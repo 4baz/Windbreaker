@@ -13,3 +13,8 @@ eg: if i see any "if (booloption == true)" kinda shit  you can fuck yourself(unl
 join the chloride/windbreaker discord! https://discord.gg/2fwhZVbREv
 
 
+
+![alt text](https://cdn.discordapp.com/attachments/1004016705313452112/1017828063540695170/unknown.png)
+
+
+
