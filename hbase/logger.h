@@ -19,9 +19,11 @@ namespace hbase
 		red = FOREGROUND_RED,
 		green = FOREGROUND_GREEN,
 		blue = FOREGROUND_BLUE,
-		intensify = FOREGROUND_INTENSITY
-	};
+		intensify = FOREGROUND_INTENSITY,
+		WHITE = 97,
 
+	};
+	
 	static const int kEventValue = 400;
 	static const int kRawValue = 600;
 	inline constexpr auto max_padding_length = 26;
@@ -84,7 +86,7 @@ namespace hbase
 		struct log_sink
 		{
 			std::map<std::string, log_color> log_colors = {
-				{INFO.text, log_color::blue | log_color::intensify},
+				{INFO.text, log_color::blue},
 				{WARNING.text, log_color::red},
 				{HACKER.text, log_color::green | log_color::intensify},
 				{FATAL.text, log_color::red | log_color::intensify},

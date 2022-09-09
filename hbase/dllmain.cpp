@@ -39,7 +39,6 @@ LONG WINAPI ExceptionHandler(EXCEPTION_POINTERS* ExceptionInfo)
 
 DWORD run(LPVOID)
 {
-//	VMProtectBegin("2");
 	MODULEINFO module_info;
 	if (K32GetModuleInformation(GetCurrentProcess(), GetModuleHandle(NULL), &module_info, sizeof(MODULEINFO)) == 0)
 	{
@@ -50,29 +49,40 @@ DWORD run(LPVOID)
 	moduleSize = module_info.SizeOfImage;
 
 	auto logger_instance = std::make_unique<logger>();
-	LOG(INFO) << "Logger构造";
-	//if (auth::login())
-	//{
+	LOG(INFO) << "innit Logger";
+	LOG(INFO) << u8R"kek(
+  █     █░ ▄▄▄▄    ██▀███  ▓█████ ▄▄▄       ██ ▄█▀▓█████  ██▀███   █     █░▄▄▄█████▓ ▄▄▄       ██ ▄█▀▓█████  ██▀███  
+▓█░ █ ░█░▓█████▄ ▓██ ▒ ██▒▓█   ▀▒████▄     ██▄█▒ ▓█   ▀ ▓██ ▒ ██▒▓█░ █ ░█░▓  ██▒ ▓▒▒████▄     ██▄█▒ ▓█   ▀ ▓██ ▒ ██▒
+▒█░ █ ░█ ▒██▒ ▄██▓██ ░▄█ ▒▒███  ▒██  ▀█▄  ▓███▄░ ▒███   ▓██ ░▄█ ▒▒█░ █ ░█ ▒ ▓██░ ▒░▒██  ▀█▄  ▓███▄░ ▒███   ▓██ ░▄█ ▒
+░█░ █ ░█ ▒██░█▀  ▒██▀▀█▄  ▒▓█  ▄░██▄▄▄▄██ ▓██ █▄ ▒▓█  ▄ ▒██▀▀█▄  ░█░ █ ░█ ░ ▓██▓ ░ ░██▄▄▄▄██ ▓██ █▄ ▒▓█  ▄ ▒██▀▀█▄  
+░░██▒██▓ ░▓█  ▀█▓░██▓ ▒██▒░▒████▒▓█   ▓██▒▒██▒ █▄░▒████▒░██▓ ▒██▒░░██▒██▓   ▒██▒ ░  ▓█   ▓██▒▒██▒ █▄░▒████▒░██▓ ▒██▒
+░ ▓░▒ ▒  ░▒▓███▀▒░ ▒▓ ░▒▓░░░ ▒░ ░▒▒   ▓▒█░▒ ▒▒ ▓▒░░ ▒░ ░░ ▒▓ ░▒▓░░ ▓░▒ ▒    ▒ ░░    ▒▒   ▓▒█░▒ ▒▒ ▓▒░░ ▒░ ░░ ▒▓ ░▒▓░
+  ▒ ░ ░  ▒░▒   ░   ░▒ ░ ▒░ ░ ░  ░ ▒   ▒▒ ░░ ░▒ ▒░ ░ ░  ░  ░▒ ░ ▒░  ▒ ░ ░      ░      ▒   ▒▒ ░░ ░▒ ▒░ ░ ░  ░  ░▒ ░ ▒░
+  ░   ░   ░    ░   ░░   ░    ░    ░   ▒   ░ ░░ ░    ░     ░░   ░   ░   ░    ░        ░   ▒   ░ ░░ ░    ░     ░░   ░ 
+    ░     ░         ░        ░  ░     ░  ░░  ░      ░  ░   ░         ░                   ░  ░░  ░      ░  ░   ░     
+               ░                                                                                                    
+                                               
+)kek";
 		try
 		{
 			g_ui_settings.load();
 			auto pointers_instance = std::make_unique<pointers>();
-			LOG(INFO) << "Pointers构造";
+			LOG(INFO) << "innit Pointers";
 
 			auto renderer_instance = std::make_unique<renderer>();
-			LOG(INFO) << "Renderer构造";
+			LOG(INFO) << "innit Renderer";
 
 			auto ui_manager_instance = std::make_unique<ui_mgr>();
-			LOG(INFO) << "Ui Manager构造";
+			LOG(INFO) << "innit Ui Manager";
 
 			auto fiber_pool_instance = std::make_unique<fiber_pool>(10);
-			LOG(INFO) << "Fiber Pool构造";
+			LOG(INFO) << "innit Fiber Pool";
 
 			auto keyboard_instance = std::make_unique<keyboard>();
-			LOG(INFO) << "KeyBoard构造";
+			LOG(INFO) << "innit KeyBoard";
 
 			auto hooking_instance = std::make_unique<hooking>();
-			LOG(INFO) << "Hooking构建";
+			LOG(INFO) << "innit Hooks";
 
 			g_script_mgr.add_script(std::make_unique<script>(&features::script_func));
 			g_script_mgr.add_script(std::make_unique<script>(&player::player_script));
@@ -90,7 +100,6 @@ DWORD run(LPVOID)
 				}
 				std::this_thread::sleep_for(3ms);
 				std::this_thread::yield();
-			//if keystate blah blah blah g running = false im too lazy to type - 4baz
 			}
 
 			g_settings.save();
@@ -101,35 +110,34 @@ DWORD run(LPVOID)
 			g_script_mgr.remove_all_scripts();
 
 			hooking_instance.reset();
-			LOG(INFO) << "Hooking析构";
+			LOG(INFO) << "reset Hooking";
 
 			keyboard_instance.reset();
-			LOG(INFO) << "KeyBoard析构";
+			LOG(INFO) << "reset keyboard";
 
 			fiber_pool_instance.reset();
-			LOG(INFO) << "Fiber Pool析构";
+			LOG(INFO) << "reset fiber pool";
 
 			ui_manager_instance.reset();
-			LOG(INFO) << "Ui Manager析构";
+			LOG(INFO) << "reset ui management";
 
 			renderer_instance.reset();
-			LOG(INFO) << "Renderer析构";
+			LOG(INFO) << "reset Renderer instance";
 
 			pointers_instance.reset();
-			LOG(INFO) << "Pointers析构";
+			LOG(INFO) << "reset pointers";
 		}
 		catch (const std::exception& e)
 		{
 			MessageBoxA(nullptr, e.what(), nullptr, MB_OK | MB_ICONEXCLAMATION);
 		}
-	//}
+	
 	logger_instance.reset();
-	LOG(INFO) << "Logger析构";
+	LOG(INFO) << "reset g3log";
 
 	CloseHandle(g_mainThread);
 	FreeLibraryAndExitThread(g_hmodule, 0);
 	return 0;
-//	VMProtectEnd();
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)

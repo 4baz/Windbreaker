@@ -394,13 +394,13 @@ namespace hbase
 		char ligfttText[64] = {};
 		sprintf_s(ligfttText, "%s", sub->GetName());
 
-		list->AddText(ImVec2(eth_pos_x, m_draw_cursor_y), m_optionTextColor, ligfttText);
+		list->AddText(ImVec2(eth_pos_x +5, m_draw_cursor_y + 6.5), m_optionTextColor, ligfttText);
 
 		char rightText[32] = {};
 		std::snprintf(rightText, sizeof(rightText) - 1, "%zu / %zu", sub->GetSelectedOption() + 1, sub->GetNumOptions());
 
 		float optionPosX = m_pos_x + m_menu_width - ImGui::CalcTextSize(rightText).x;
-		list->AddText(ImVec2(optionPosX, m_draw_cursor_y + 7.5), m_optionTextColor, rightText);
+		list->AddText(ImVec2(optionPosX -5, m_draw_cursor_y + 6.5), m_optionTextColor, rightText);
 
 		m_draw_cursor_y += m_option_height;
 	}
@@ -678,7 +678,7 @@ namespace hbase
 			sprintf_s(text, "%s", opt->GetLeftText());
 		}
 
-		list->AddText(ImVec2(optionPosX, m_draw_cursor_y + 7.5), selected ? text_rgba_active : text_rgba, text);
+		list->AddText(ImVec2(optionPosX +5, m_draw_cursor_y + 7.5), selected ? text_rgba_active : text_rgba, text);
 
 		//äÖÈ¾ÓÒ±ßÎÄ×Ö
 		const char* rightText = opt->GetRightText();

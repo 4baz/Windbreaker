@@ -32,7 +32,7 @@ namespace hbase
 		other_protection,
 		advertise_protection,
 		crash_protection,
-		onlie_option,
+		Network_option,
 		rid_jion,
 		remove_player,
 		host_tools,
@@ -64,18 +64,16 @@ namespace hbase
 	{
 		m_initialized = true;
 		std::size_t SELF = g_ui_mgr->addSub("SELF");//this is dumb im just too lazy to change
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "HOME", main_menu, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "W Taker", main_menu, [](RegularSubmenu* sub)
 			{
 			
 				sub->add_option<SubOption>("Self Options", nullptr, self_option);
 				sub->add_option<SubOption>("Weapon", nullptr, weapon_option);
-				sub->add_option<SubOption>("Protections", nullptr, protection_option);
-				sub->add_option<SubOption>("Online", nullptr, onlie_option);
-				sub->add_option<SubOption>("Player List", nullptr, player_list);
-				sub->add_option<SubOption>("Vehicle", nullptr, vehicle_option);
 				sub->add_option<SubOption>("Teleports", nullptr, teleport_option);
-				sub->add_option<SubOption>("Heists?", nullptr, task_option);
-
+				sub->add_option<SubOption>("Vehicle", nullptr, vehicle_option);
+				sub->add_option<SubOption>("Network", nullptr, Network_option);
+				sub->add_option<SubOption>("Player List", nullptr, player_list);
+				sub->add_option<SubOption>("Protections", nullptr, protection_option);
 				sub->add_option<SubOption>("Settings", nullptr, menu_seetings);
 
 
@@ -206,12 +204,14 @@ namespace hbase
 			});
 
 	//	std::size_t ONLINE = g_ui_mgr->addSub("ONLINE");
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "ONLINE", onlie_option, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "ONLINE", Network_option, [](RegularSubmenu* sub)
 			{
 				sub->add_option<SubOption>("RID joiner", nullptr, rid_jion);
 				sub->add_option<SubOption>("Player info spoofer­", nullptr, info_spoof);
 			//	sub->add_option<SubOption>("Remove all", nullptr, remove_player);
 				sub->add_option<SubOption>("Host tools", nullptr, host_tools);
+				sub->add_option<SubOption>("Heist Manager", "Still some major chinese here", task_option);
+
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "RID", rid_jion, [](RegularSubmenu* sub)
 			{
@@ -1096,7 +1096,7 @@ namespace hbase
 
 
 
-				sub->add_option<BreakOption>("");
+				sub->add_option<BreakOption>(VERSION);
 				sub->add_option<RegularOption>("Unload", nullptr, [] {
 					g_running = false;
 					});
@@ -1107,7 +1107,7 @@ namespace hbase
 					});
 				sub->add_option<BreakOption>("CREDITS:");
 				//add yourself if u give zero fucks
-				sub->add_option<RegularOption>("4baz", nullptr, [] {});
+				sub->add_option<RegularOption>("discord.gg/2fwhZVbREv", nullptr, [] {});
 
 
 			});

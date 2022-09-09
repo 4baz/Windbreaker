@@ -2,7 +2,7 @@
 #define PCH_H
 
 #pragma once
-
+#define VERSION "1.0.0"
 //Windows
 #include <windows.h>
 #include <exception>
@@ -23,7 +23,6 @@
 #include "fmt/format.h"
 #include"nlohmann/json.hpp"
 #include"natives.h"
-#include"VMProtectSDK.h"
 #pragma execution_character_set("utf-8")
 
 #define MENU_PATH "C:\\Wbreaker"
