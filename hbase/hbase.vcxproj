@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{885D900F-F471-B8C0-BDF3-5B2029C7B4F1}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>hbase</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug\</OutDir>
+    <IntDir>..\bin\int\Debug\hbase\</IntDir>
+    <TargetName>WbreakerWTaker</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <OutDir>..\bin\Release\</OutDir>
+    <IntDir>..\bin\int\Release\hbase\</IntDir>
+    <TargetName>WbreakerWTaker</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <OutDir>..\bin\Dist\</OutDir>
+    <IntDir>..\bin\int\Dist\hbase\</IntDir>
+    <TargetName>WbreakerWTaker</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4100;4201;4307;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN;_WIN32_WINNT=0x601;_DEBUG;HBASE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\vendor\fmt\include;..\vendor\g3log\src;..\vendor\minhook\include;..\vendor\imgui;..\vendor\json\include;..\vendor\HTTPRequest\include;..\vendor\pugixml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\bin\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Debug\hbase.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4100;4201;4307;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN;_WIN32_WINNT=0x601;NDEBUG;HBASE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\vendor\fmt\include;..\vendor\g3log\src;..\vendor\minhook\include;..\vendor\imgui;..\vendor\json\include;..\vendor\HTTPRequest\include;..\vendor\pugixml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\bin\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Release\hbase.lib</ImportLibrary>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>4100;4201;4307;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NOMINMAX;WIN32_LEAN_AND_MEAN;_WIN32_WINNT=0x601;NDEBUG;HBASE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\vendor\fmt\include;..\vendor\g3log\src;..\vendor\minhook\include;..\vendor\imgui;..\vendor\json\include;..\vendor\HTTPRequest\include;..\vendor\pugixml\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\bin\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Dist\hbase.lib</ImportLibrary>
+      <GenerateMapFile>true</GenerateMapFile>
+      <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\vendor\pugixml\src\pugiconfig.hpp" />
+    <ClInclude Include="..\vendor\pugixml\src\pugixml.hpp" />
+    <ClInclude Include="crossmap.h" />
+    <ClInclude Include="data\lists.h" />
+    <ClInclude Include="data\player.h" />
+    <ClInclude Include="data\vehicles.h" />
+    <ClInclude Include="detourhk.h" />
+    <ClInclude Include="enums.h" />
+    <ClInclude Include="features.h" />
+    <ClInclude Include="fiber_pool.h" />
+    <ClInclude Include="function_types.h" />
+    <ClInclude Include="gta\PickupRewards.h" />
+    <ClInclude Include="gta\VehicleValues.h" />
+    <ClInclude Include="gta\Vehicles.h" />
+    <ClInclude Include="gta\Weapons.h" />
+    <ClInclude Include="gta\array.h" />
+    <ClInclude Include="gta\base.h" />
+    <ClInclude Include="gta\blip.h" />
+    <ClInclude Include="gta\color.h" />
+    <ClInclude Include="gta\decal_controller.h" />
+    <ClInclude Include="gta\enums.h" />
+    <ClInclude Include="gta\extensible.h" />
+    <ClInclude Include="gta\fwddec.h" />
+    <ClInclude Include="gta\joaat.h" />
+    <ClInclude Include="gta\matrix.h" />
+    <ClInclude Include="gta\natives.h" />
+    <ClInclude Include="gta\net_game_event.h" />
+    <ClInclude Include="gta\net_object_mgr.h" />
+    <ClInclude Include="gta\node_list.h" />
+    <ClInclude Include="gta\ped_factory.h" />
+    <ClInclude Include="gta\player.h" />
+    <ClInclude Include="gta\ref_aware.h" />
+    <ClInclude Include="gta\replay.h" />
+    <ClInclude Include="gta\script_handler.h" />
+    <ClInclude Include="gta\script_id.h" />
+    <ClInclude Include="gta\script_program.h" />
+    <ClInclude Include="gta\script_thread.h" />
+    <ClInclude Include="gta\structs.h" />
+    <ClInclude Include="gta\sysMemAllocator.h" />
+    <ClInclude Include="gta\tls_context.h" />
+    <ClInclude Include="gta\vector.h" />
+    <ClInclude Include="gta_util.hpp" />
+    <ClInclude Include="hooking.h" />
+    <ClInclude Include="ini.h" />
+    <ClInclude Include="invoker.h" />
+    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="logger.h" />
+    <ClInclude Include="main_gui.h" />
+    <ClInclude Include="memory\all.h" />
+    <ClInclude Include="memory\fwddec.hpp" />
+    <ClInclude Include="memory\handle.h" />
+    <ClInclude Include="memory\module.h" />
+    <ClInclude Include="memory\pattern.h" />
+    <ClInclude Include="memory\pbatch.h" />
+    <ClInclude Include="memory\range.h" />
+    <ClInclude Include="mod_vehicle.h" />
+    <ClInclude Include="natives.h" />
+    <ClInclude Include="offset.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="pointers.h" />
+    <ClInclude Include="protection.h" />
+    <ClInclude Include="renderer.h" />
+    <ClInclude Include="script.h" />
+    <ClInclude Include="script_global.h" />
+    <ClInclude Include="script_mgr.h" />
+    <ClInclude Include="settings.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="types.h" />
+    <ClInclude Include="ui\abstract_option.h" />
+    <ClInclude Include="ui\abstract_submenu.h" />
+    <ClInclude Include="ui\base_option.h" />
+    <ClInclude Include="ui\base_submenu.h" />
+    <ClInclude Include="ui\bool_option.h" />
+    <ClInclude Include="ui\break_option.h" />
+    <ClInclude Include="ui\choose_option.h" />
+    <ClInclude Include="ui\icnon_font.hpp" />
+    <ClInclude Include="ui\number_option.h" />
+    <ClInclude Include="ui\player_submenu.h" />
+    <ClInclude Include="ui\regular_option.h" />
+    <ClInclude Include="ui\regular_submenu.h" />
+    <ClInclude Include="ui\sub_option.h" />
+    <ClInclude Include="ui\text_box.h" />
+    <ClInclude Include="ui\ui_manager.h" />
+    <ClInclude Include="ui\util.h" />
+    <ClInclude Include="ui\vehicle_option.h" />
+    <ClInclude Include="ui_settings.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="vmt_hook.h" />
+    <ClInclude Include="world_memory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\vendor\pugixml\src\pugixml.cpp" />
+    <ClCompile Include="data\lists.cpp" />
+    <ClCompile Include="data\player.cpp" />
+    <ClCompile Include="data\vehicles.cpp" />
+    <ClCompile Include="detourhk.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="features.cpp" />
+    <ClCompile Include="fiber_pool.cpp" />
+    <ClCompile Include="hooking.cpp" />
+    <ClCompile Include="hooks\can_apply_to_object.cpp" />
+    <ClCompile Include="hooks\clone_create.cpp" />
+    <ClCompile Include="hooks\clone_create_ack.cpp" />
+    <ClCompile Include="hooks\clone_remove.cpp" />
+    <ClCompile Include="hooks\clone_remove_ack.cpp" />
+    <ClCompile Include="hooks\clone_sync.cpp" />
+    <ClCompile Include="hooks\clone_sync_ack.cpp" />
+    <ClCompile Include="hooks\disable_error_screen.cpp" />
+    <ClCompile Include="hooks\force_script_host.cpp" />
+    <ClCompile Include="hooks\get_chat_data.cpp" />
+    <ClCompile Include="hooks\gta_thread_kill.cpp" />
+    <ClCompile Include="hooks\gta_thread_start.cpp" />
+    <ClCompile Include="hooks\gta_thread_tick.cpp" />
+    <ClCompile Include="hooks\increment_stat_event.cpp" />
+    <ClCompile Include="hooks\is_dlc_present.cpp" />
+    <ClCompile Include="hooks\net_array_handler.cpp" />
+    <ClCompile Include="hooks\pack_clone_create.cpp" />
+    <ClCompile Include="hooks\pack_clone_remove.cpp" />
+    <ClCompile Include="hooks\player_join.cpp" />
+    <ClCompile Include="hooks\player_left.cpp" />
+    <ClCompile Include="hooks\received_event.cpp" />
+    <ClCompile Include="hooks\rid_join.cpp" />
+    <ClCompile Include="hooks\scripted_game_event.cpp" />
+    <ClCompile Include="hooks\send_clone_sync.cpp" />
+    <ClCompile Include="hooks\send_net_info_to_lobby.cpp" />
+    <ClCompile Include="hooks\sub_7FF7AA059CC4.cpp" />
+    <ClCompile Include="hooks\sync_player_model.cpp" />
+    <ClCompile Include="hooks\sync_read.cpp" />
+    <ClCompile Include="hooks\unregister_object.cpp" />
+    <ClCompile Include="hooks\write_bitbuffer_dword.cpp" />
+    <ClCompile Include="ini.cpp" />
+    <ClCompile Include="invoker.cpp" />
+    <ClCompile Include="keyboard.cpp" />
+    <ClCompile Include="main_gui.cpp" />
+    <ClCompile Include="memory\module.cpp" />
+    <ClCompile Include="memory\pattern.cpp" />
+    <ClCompile Include="memory\pbatch.cpp" />
+    <ClCompile Include="memory\range.cpp" />
+    <ClCompile Include="mod_vehicle.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="pointers.cpp" />
+    <ClCompile Include="protection.cpp" />
+    <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="script.cpp" />
+    <ClCompile Include="script_global.cpp" />
+    <ClCompile Include="script_mgr.cpp" />
+    <ClCompile Include="ui\ui_manager.cpp" />
+    <ClCompile Include="util.cpp" />
+    <ClCompile Include="vmt_hook.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Masm Include="invoker_asm.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\vendor\fmt\fmt.vcxproj">
+      <Project>{4C73880B-B87C-887C-41F8-9E7CAD00947C}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\g3log\g3log.vcxproj">
+      <Project>{81AD640F-EDC1-8CC0-B643-3020221789F1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\minhook\minhook.vcxproj">
+      <Project>{5A9B3AC7-C67A-B962-CF92-44393BF11FC4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\imgui\imgui.vcxproj">
+      <Project>{0098A80F-6CAC-D0C0-352E-7420A101CDF1}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

@@ -86,7 +86,6 @@ $RECYCLE.BIN/
 # User-specific files
 *.rsuser
 *.suo
-*.user
 *.userosscache
 *.sln.docstates
 
@@ -423,7 +422,6 @@ MigrationBackup/
 
 ### Project specific ###
 bin/
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
+
+
+

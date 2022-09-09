@@ -20,7 +20,6 @@ namespace hbase
 		green = FOREGROUND_GREEN,
 		blue = FOREGROUND_BLUE,
 		intensify = FOREGROUND_INTENSITY,
-		WHITE = 97,
 
 	};
 	

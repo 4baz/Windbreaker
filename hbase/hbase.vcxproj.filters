@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="cryptopp">
+      <UniqueIdentifier>{861A0443-72E7-5E4E-9B00-4DF6872C94DC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cryptopp\include">
+      <UniqueIdentifier>{F9672E9E-E560-4DF0-0E93-3275FAEA2CFC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{5F91957C-4BC8-960D-F4B4-7C10E0CA120F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gta">
+      <UniqueIdentifier>{6178880B-CD81-887C-56FD-9E7CC205947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooks">
+      <UniqueIdentifier>{09B9970F-75CD-BFC0-3E4F-6320AA22BCF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="memory">
+      <UniqueIdentifier>{DEA8820D-CA4A-ADE3-B305-C1379F463434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{C3795900-AF05-880B-18B4-880B045F880B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\pugixml">
+      <UniqueIdentifier>{A82E4793-94FC-3A99-7D90-ABBF69FD16FE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\pugixml\src">
+      <UniqueIdentifier>{BF002A2B-ABE4-EA80-1445-E5D30048D502}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\vendor\pugixml\src\pugiconfig.hpp">
+      <Filter>vendor\pugixml\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vendor\pugixml\src\pugixml.hpp">
+      <Filter>vendor\pugixml\src</Filter>
+    </ClInclude>
+    <ClInclude Include="crossmap.h" />
+    <ClInclude Include="data\lists.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\player.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="data\vehicles.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="detourhk.h" />
+    <ClInclude Include="enums.h" />
+    <ClInclude Include="features.h" />
+    <ClInclude Include="fiber_pool.h" />
+    <ClInclude Include="function_types.h" />
+    <ClInclude Include="gta\PickupRewards.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\VehicleValues.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\Vehicles.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\Weapons.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\array.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\base.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\blip.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\color.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\decal_controller.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\enums.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\extensible.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\fwddec.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\joaat.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\matrix.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\natives.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\net_game_event.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\net_object_mgr.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\node_list.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\ped_factory.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\player.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\ref_aware.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\replay.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\script_handler.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\script_id.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\script_program.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\script_thread.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\structs.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\sysMemAllocator.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\tls_context.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta\vector.h">
+      <Filter>gta</Filter>
+    </ClInclude>
+    <ClInclude Include="gta_util.hpp" />
+    <ClInclude Include="hooking.h" />
+    <ClInclude Include="ini.h" />
+    <ClInclude Include="invoker.h" />
+    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="logger.h" />
+    <ClInclude Include="main_gui.h" />
+    <ClInclude Include="memory\all.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\fwddec.hpp">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\handle.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\module.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\pattern.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\pbatch.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\range.h">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="mod_vehicle.h" />
+    <ClInclude Include="natives.h" />
+    <ClInclude Include="offset.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="pointers.h" />
+    <ClInclude Include="protection.h" />
+    <ClInclude Include="renderer.h" />
+    <ClInclude Include="script.h" />
+    <ClInclude Include="script_global.h" />
+    <ClInclude Include="script_mgr.h" />
+    <ClInclude Include="settings.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="types.h" />
+    <ClInclude Include="ui\abstract_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\abstract_submenu.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\base_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\base_submenu.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\bool_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\break_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\choose_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\number_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\player_submenu.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\regular_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\regular_submenu.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\sub_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\text_box.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\ui_manager.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\util.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\vehicle_option.h">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_settings.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="vmt_hook.h" />
+    <ClInclude Include="world_memory.h" />
+    <ClInclude Include="ui\icnon_font.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\vendor\pugixml\src\pugixml.cpp">
+      <Filter>vendor\pugixml\src</Filter>
+    </ClCompile>
+    <ClCompile Include="data\lists.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\player.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\vehicles.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="detourhk.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="features.cpp" />
+    <ClCompile Include="fiber_pool.cpp" />
+    <ClCompile Include="hooking.cpp" />
+    <ClCompile Include="hooks\can_apply_to_object.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\clone_create.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\clone_create_ack.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\clone_remove.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\clone_remove_ack.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\clone_sync.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\clone_sync_ack.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\disable_error_screen.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\force_script_host.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\get_chat_data.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\gta_thread_kill.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\gta_thread_start.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\gta_thread_tick.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\increment_stat_event.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\is_dlc_present.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\net_array_handler.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\pack_clone_create.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\pack_clone_remove.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\player_join.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\player_left.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\received_event.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\rid_join.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\scripted_game_event.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\send_clone_sync.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\send_net_info_to_lobby.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\sub_7FF7AA059CC4.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\sync_player_model.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\sync_read.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\unregister_object.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\write_bitbuffer_dword.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="ini.cpp" />
+    <ClCompile Include="invoker.cpp" />
+    <ClCompile Include="keyboard.cpp" />
+    <ClCompile Include="main_gui.cpp" />
+    <ClCompile Include="memory\module.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\pattern.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\pbatch.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\range.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="mod_vehicle.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="pointers.cpp" />
+    <ClCompile Include="protection.cpp" />
+    <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="script.cpp" />
+    <ClCompile Include="script_global.cpp" />
+    <ClCompile Include="script_mgr.cpp" />
+    <ClCompile Include="ui\ui_manager.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp" />
+    <ClCompile Include="vmt_hook.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Masm Include="invoker_asm.asm" />
+  </ItemGroup>
+</Project>
