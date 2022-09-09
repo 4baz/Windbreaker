@@ -13,7 +13,6 @@
 #include"ui_settings.h"
 #include"data/player.h"
 #include <Psapi.h>
-#include"auth.h"
 
 using namespace hbase;
 LPVOID baseAddress;
