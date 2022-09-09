@@ -12,16 +12,19 @@ namespace hbase
 		"OffRoad", "Planes", "Sedans", "Service", "Sports", "Sports Classics",
 		"Super", "SUVs", "Trailer", "Trains", "Utility", "Vans", "DLC: Import/Export",
 		"DLC: Gunrunning", "DLC: Smuggler's Run", "DLC: Doomsday Heist", "DLC: Super Sport Series",
-		"DLC: After Hours", "DLC: Arena War", "DLC: Diamond Casino"
+		"DLC: After Hours", "DLC: Arena War", "DLC: Diamond Casino", "DLC: Criminal Enterprise"
 	};
+	static const char* criminalenterprise[]{
+	"OMNISEGT","SENTINEL4","CONADA","RUINER4","BRIOSO3","CORSITA","DRAUGUR","KANJOSJ","POSTLUDE","TORERO2","VIGERO2","LM87","TENF","TENF2","RHINEHART","GREENWOOD","SM722","WEEVIL2"
 
+	};
 	static const char* Import_Export[] = {
 		"buffalo4","granger2","iwagen","patriot3","astron","deity",
 	"ignus","jubilee","reever","shinobi","Sugoi","zeno","baller7",
 	"champion","cinquemila","comet7"
 	};
 
-	static const char* haidao[] = {
+	static const char* cayoperico[] = {
 		"alkonost","avisa","brioso2","dinghy5","italirsx"
 		,"kosatka","longfin","manchez2","patrolboat","seasparrow3",
 		"slamtruck","squaddie","toreador","verus","vetir",
@@ -256,7 +259,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "船";
+			vehClass.className = "Boats";
 			for (const char* str : Boats1)
 			{
 				std::string tmp(str);
@@ -277,7 +280,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "小型车辆";
+			vehClass.className = "Compacts";
 			for (const char* str : Compacts1)
 			{
 				std::string tmp(str);
@@ -298,7 +301,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "轿跑车";
+			vehClass.className = "Coupes";
 			for (const char* str : Coupes1)
 			{
 				std::string tmp(str);
@@ -319,7 +322,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "自行车";
+			vehClass.className = "Cycles";
 			for (const char* str : Cycles1)
 			{
 				std::string tmp(str);
@@ -340,7 +343,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "警用车辆";
+			vehClass.className = "Emergency";
 			for (const char* str : Emergency1)
 			{
 				std::string tmp(str);
@@ -361,7 +364,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "直升机";
+			vehClass.className = "Helicopters";
 			for (const char* str : Helicopters1)
 			{
 				std::string tmp(str);
@@ -382,7 +385,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "工业车辆";
+			vehClass.className = "Industrial1";
 			for (const char* str : Industrial1)
 			{
 				std::string tmp(str);
@@ -403,7 +406,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "军用车辆";
+			vehClass.className = "Military";
 			for (const char* str : Military1)
 			{
 				std::string tmp(str);
@@ -424,7 +427,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "摩托车";
+			vehClass.className = "Motorcycles";
 			for (const char* str : Motorcycles1)
 			{
 				std::string tmp(str);
@@ -445,7 +448,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "肌肉车";
+			vehClass.className = "Muscle";
 			for (const char* str : Muscle1)
 			{
 				std::string tmp(str);
@@ -466,7 +469,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "越野车";
+			vehClass.className = "OffRoad";
 			for (const char* str : OffRoad1)
 			{
 				std::string tmp(str);
@@ -487,7 +490,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "飞机";
+			vehClass.className = "Planes";
 			for (const char* str : Planes1)
 			{
 				std::string tmp(str);
@@ -508,7 +511,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "轿车";
+			vehClass.className = "Sedans";
 			for (const char* str : Sedans1)
 			{
 				std::string tmp(str);
@@ -529,7 +532,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "公共服务车";
+			vehClass.className = "Service";
 			for (const char* str : Service1)
 			{
 				std::string tmp(str);
@@ -550,7 +553,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "跑车";
+			vehClass.className = "Sports2";
 			for (const char* str : Sports1)
 			{
 				std::string tmp(str);
@@ -571,7 +574,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "经典跑车";
+			vehClass.className = "Sports classics";
 			for (const char* str : SportsClassics1)
 			{
 				std::string tmp(str);
@@ -592,7 +595,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "超级跑车";
+			vehClass.className = "Super";
 			for (const char* str : Super1)
 			{
 				std::string tmp(str);
@@ -634,7 +637,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "拖车";
+			vehClass.className = "Trailer";
 			for (const char* str : Trailer1)
 			{
 				std::string tmp(str);
@@ -655,7 +658,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "火车";
+			vehClass.className = "Trains";
 			for (const char* str : Trains1)
 			{
 				std::string tmp(str);
@@ -676,7 +679,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "公共事业车";
+			vehClass.className = "Utility";
 			for (const char* str : Utility1)
 			{
 				std::string tmp(str);
@@ -697,7 +700,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "货车";
+			vehClass.className = "Vans";
 			for (const char* str : Vans1)
 			{
 				std::string tmp(str);
@@ -718,7 +721,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "商业车辆";
+			vehClass.className = "Commercial";
 			for (const char* str : Commercial1)
 			{
 				std::string tmp(str);
@@ -739,7 +742,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "军火霸业DLC";
+			vehClass.className = "Gun Running";
 			for (const char* str : Gunrunning)
 			{
 				std::string tmp(str);
@@ -760,7 +763,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "走私大暴走DLC";
+			vehClass.className = "Smugglers Run";
 			for (const char* str : Smugglers_Run)
 			{
 				std::string tmp(str);
@@ -781,7 +784,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "末日豪劫";
+			vehClass.className = "Doomsday";
 			for (const char* str : Doomsday_Heist)
 			{
 				std::string tmp(str);
@@ -802,7 +805,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "南圣安地列斯超级赛";
+			vehClass.className = "Super sport";
 			for (const char* str : Super_Sport_Series)
 			{
 				std::string tmp(str);
@@ -823,7 +826,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "夜总会";
+			vehClass.className = "After Hours";
 			for (const char* str : After_Hours)
 			{
 				std::string tmp(str);
@@ -844,7 +847,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "竞技场之战DLC";
+			vehClass.className = "Arena War";
 			for (const char* str : Arena_War)
 			{
 				std::string tmp(str);
@@ -865,7 +868,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "名钻赌场DLC";
+			vehClass.className = "Diamond Casino";
 			for (const char* str : Diamond_Casino)
 			{
 				std::string tmp(str);
@@ -886,7 +889,7 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "名钻赌场豪劫DLC";
+			vehClass.className = "Diamond Casino heist";
 			for (const char* str : Diamond_Casino_Heist)
 			{
 				std::string tmp(str);
@@ -907,8 +910,8 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "佩里克岛DLC";
-			for (const char* str : haidao)
+			vehClass.className = "cayo perico";
+			for (const char* str : cayoperico)
 			{
 				std::string tmp(str);
 				buffer.push_back(tmp);
@@ -928,8 +931,28 @@ namespace hbase
 
 		{
 			VehicleClass vehClass;
-			vehClass.className = "事务所DLC";
+			vehClass.className = "Import Export";
 			for (const char* str : Import_Export)
+			{
+				std::string tmp(str);
+				buffer.push_back(tmp);
+				std::sort(buffer.begin(), buffer.end());
+			}
+			for (std::string str : buffer)
+			{
+				VehiclePack pack;
+				pack.name = str.c_str();
+				pack.hash = rage::joaat(pack.name);
+				pack.labelText = HUD::_GET_LABEL_TEXT(VEHICLE::GET_DISPLAY_NAME_FROM_VEHICLE_MODEL(pack.hash));
+				vehClass.vehicles.push_back(pack);
+			}
+			classes.push_back(vehClass);
+			buffer.clear();
+		}
+		{
+			VehicleClass vehClass;
+			vehClass.className = "Criminal Enterprise";
+			for (const char* str : criminalenterprise)
 			{
 				std::string tmp(str);
 				buffer.push_back(tmp);

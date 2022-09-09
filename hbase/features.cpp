@@ -429,7 +429,7 @@ namespace hbase
 	void features::key_9_speed_up()
 	{
 		Vehicle veh = PED::GET_VEHICLE_PED_IS_IN(PLAYER::PLAYER_PED_ID(), false);
-		if (KeyPressed(VK_NUMPAD9))
+		if (PLAYER::IS_PLAYER_PRESSING_HORN(PLAYER::PLAYER_ID()))
 		{
 			NETWORK::NETWORK_REQUEST_CONTROL_OF_ENTITY(veh);
 			if (NETWORK::NETWORK_HAS_CONTROL_OF_ENTITY(veh))

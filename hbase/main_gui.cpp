@@ -121,7 +121,7 @@ namespace hbase
 					}
 					QUEUE_JOB_END_CLAUSE
 					});
-				sub->add_option<RegularOption>("Sewslide", "", [] {
+				sub->add_option<RegularOption>("Kill Yourself", "", [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						ENTITY::SET_ENTITY_HEALTH(PLAYER::PLAYER_PED_ID(), 0, 0);
@@ -131,13 +131,20 @@ namespace hbase
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Change player model", change_player_model, [](RegularSubmenu* sub)
 			{
+				sub->add_option<RegularOption>("Reset model", "Only resets to freemode default", [] {
+					QUEUE_JOB_BEGIN_CLAUSE()
+					{
+						features::chage_player_model(MISC::GET_HASH_KEY("mp_f_freemode_01"));
+					}QUEUE_JOB_END_CLAUSE
+					});
 				static std::size_t ped_id{};
 				sub->add_option<ChooseOption< const char*, std::size_t>>("Change model", "", &lists::player_model, &ped_id, false, [&] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						features::chage_player_model(MISC::GET_HASH_KEY(lists::player_model[ped_id]));
 					}QUEUE_JOB_END_CLAUSE
-					});
+					});//mp_f_freemode_01
+			
 			});
 		
 	//	std::size_t PROTECTION = g_ui_mgr->addSub("PROTEX");
@@ -145,12 +152,14 @@ namespace hbase
 			{
 				sub->add_option<SubOption>("Net events", nullptr, net_event_protection);
 				sub->add_option<SubOption>("Script events", nullptr, script_protection);
-				sub->add_option<SubOption>("other", nullptr, other_protection);
+			//	sub->add_option<SubOption>("other", nullptr, other_protection);
 				sub->add_option<SubOption>("Crash protex", nullptr, crash_protection);
 				sub->add_option<SubOption>("Chat protex", nullptr, advertise_protection);
-				sub->add_option<BoolOption<bool>>("script_kick_and_crash?", "china translation idk", g_settings.options["script_kick_and_crash"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Freemode Kick", "", g_settings.options["script_kick_and_crash"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("No Error screen", nullptr, g_settings.options["disable_error_screen"].get<bool*>());
+
 			});
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Script protex", script_protection, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Script Events", script_protection, [](RegularSubmenu* sub)
 			{
 				sub->add_option<BoolOption<bool>>("bounty", nullptr, g_settings.options["bounty"].get<bool*>());
 				sub->add_option<BoolOption<bool>>("CEO ban", nullptr, g_settings.options["ceo_ban"].get<bool*>());
@@ -175,43 +184,42 @@ namespace hbase
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Net events", net_event_protection, [](RegularSubmenu* sub)
 			{
-				sub->add_option<BoolOption<bool>>("freeze", nullptr, g_settings.options["freeze"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("control", nullptr, g_settings.options["control"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("increment_stat_event®", nullptr, g_settings.options["increment_stat_event"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Block entity freeze", nullptr, g_settings.options["freeze"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Block entity control", nullptr, g_settings.options["control"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Block Increment stat event", nullptr, g_settings.options["increment_stat_event"].get<bool*>());
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "other protex", other_protection, [](RegularSubmenu* sub)
 			{
-				sub->add_option<BoolOption<bool>>("disable_error_screen", nullptr, g_settings.options["disable_error_screen"].get<bool*>());
 			});
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Advertise/chat protex", advertise_protection, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "chat protections", advertise_protection, [](RegularSubmenu* sub)
 			{
-				sub->add_option<BoolOption<bool>>("block_ad", nullptr, g_settings.options["block_ad"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("crash_ad", nullptr, g_settings.options["crash_ad"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("block ad", nullptr, g_settings.options["block_ad"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("crash ad", nullptr, g_settings.options["crash_ad"].get<bool*>());
 			});
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "crash protex", crash_protection, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "crash protections", crash_protection, [](RegularSubmenu* sub)
 			{
-				sub->add_option<BoolOption<bool>>("invalid_sync_type", nullptr, g_settings.options["invalid_sync_type"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("sync_model_mismatch", nullptr, g_settings.options["sync_model_mismatch"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("model_crash", nullptr, g_settings.options["model_crash"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("NetArray", nullptr, g_settings.options["net_array"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("PlayerModel", nullptr, g_settings.options["sync_player_model"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("invalid sync", nullptr, g_settings.options["invalid_sync_type"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("model mismatch", nullptr, g_settings.options["sync_model_mismatch"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("model crash", nullptr, g_settings.options["model_crash"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Net Array", nullptr, g_settings.options["net_array"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Player Model", nullptr, g_settings.options["sync_player_model"].get<bool*>());
 			});
 
 	//	std::size_t ONLINE = g_ui_mgr->addSub("ONLINE");
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "ONLINE", onlie_option, [](RegularSubmenu* sub)
 			{
-				sub->add_option<SubOption>("RID JOIN", nullptr, rid_jion);
-				sub->add_option<SubOption>("INFO spoofer≠", nullptr, info_spoof);
-				sub->add_option<SubOption>("Remove player", nullptr, remove_player);
+				sub->add_option<SubOption>("RID joiner", nullptr, rid_jion);
+				sub->add_option<SubOption>("Player info spoofer≠", nullptr, info_spoof);
+			//	sub->add_option<SubOption>("Remove all", nullptr, remove_player);
 				sub->add_option<SubOption>("Host tools", nullptr, host_tools);
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "RID", rid_jion, [](RegularSubmenu* sub)
 			{
 				sub->add_option<RegularOption>(std::move(RegularOption("RID").SetRightText(std::to_string(g_settings.options["join_rid"].get<int>()).c_str())));
-				sub->add_option<RegularOption>("Input rid?", "", [] {
+				sub->add_option<RegularOption>("Input rid:", "", [] {
 					g_ui_mgr->inputBox([] {g_settings.options["join_rid"] = atoi(g_ui_mgr->getInputText().c_str()); });
 					});
-				sub->add_option<RegularOption>("Join lobby?", "", [] {
+				sub->add_option<RegularOption>("Join lobby", "", [] {
 					g_fiber_pool->queue_job([]
 						{
 							if (g_pointers->m_menu_ptr)
@@ -232,7 +240,7 @@ namespace hbase
 						});
 					});
 			});
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "ONLINE", remove_player, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Remove all", remove_player, [](RegularSubmenu* sub)
 			{
 				sub->add_option<RegularOption>("Tp underground", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
@@ -255,7 +263,7 @@ namespace hbase
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Host tools", host_tools, [](RegularSubmenu* sub)
 			{
-				sub->add_option<RegularOption>("force script host?", nullptr, [] {
+				sub->add_option<RegularOption>("force script host", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						CNetGamePlayer* player = g_pointers->m_get_net_game_player(PLAYER::PLAYER_ID());
@@ -269,25 +277,27 @@ namespace hbase
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "spoofing≠", info_spoof, [](RegularSubmenu* sub)
 			{
-				sub->add_option<BoolOption<bool>>("spoof_rockstar_id≠", nullptr, g_settings.options["spoof_rockstar_id"].get<bool*>());
-				sub->add_option<RegularOption>(std::move(RegularOption("RID").SetRightText(std::to_string(g_settings.options["rockstar_id"].get<int>()).c_str())));
-				sub->add_option<RegularOption>("rockstar_id", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["rockstar_id"] = atoi(g_ui_mgr->getInputText().c_str()); }); });
+				sub->add_option<BreakOption>("R*ID spoofing");
+
+				sub->add_option<BoolOption<bool>>("spoof R*ID", nullptr, g_settings.options["spoof_rockstar_id"].get<bool*>());
+				sub->add_option<RegularOption>(std::move(RegularOption("RID =").SetRightText(std::to_string(g_settings.options["rockstar_id"].get<int>()).c_str())));
+				sub->add_option<RegularOption>("Input rockstar id:", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["rockstar_id"] = atoi(g_ui_mgr->getInputText().c_str()); }); });
 				sub->add_option<BreakOption>("spoof username");
-				sub->add_option<BoolOption<bool>>("spoof_username≠", nullptr, g_settings.options["spoof_username"].get<bool*>());
-				sub->add_option<RegularOption>(std::move(RegularOption("username").SetRightText(g_settings.options["username"].get<std::string>().c_str())));
-				sub->add_option<RegularOption>("username input", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["username"] = g_ui_mgr->getInputText(); }); });
-				sub->add_option<BreakOption>("spoof host token?");
-				sub->add_option<BoolOption<bool>>("spoof_host_token≠", nullptr, g_settings.options["spoof_host_token"].get<bool*>());
-				sub->add_option<RegularOption>(std::move(RegularOption("host_token?").SetRightText(std::to_string(g_settings.options["host_token"].get<int>()).c_str())));
+				sub->add_option<BoolOption<bool>>("spoof username≠", nullptr, g_settings.options["spoof_username"].get<bool*>());
+				sub->add_option<RegularOption>(std::move(RegularOption("username =").SetRightText(g_settings.options["username"].get<std::string>().c_str())));
+				sub->add_option<RegularOption>("Input Username:", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["username"] = g_ui_mgr->getInputText(); }); });
+				sub->add_option<BreakOption>("spoof host token");
+				sub->add_option<BoolOption<bool>>("spoof host token≠", nullptr, g_settings.options["spoof_host_token"].get<bool*>());
+				sub->add_option<RegularOption>(std::move(RegularOption("host token =").SetRightText(std::to_string(g_settings.options["host_token"].get<int>()).c_str())));
 				sub->add_option<RegularOption>("input host_token", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["host_token"] = atoi(g_ui_mgr->getInputText().c_str()); }); });
 				sub->add_option<BreakOption>("IP");
 				sub->add_option<BoolOption<bool>>("spoof ip≠", nullptr, g_settings.options["spoof_ip"].get<bool*>());
 				sub->add_option<RegularOption>(std::move(RegularOption("IP[1]").SetRightText(std::to_string(g_settings.options["ip"][1].get<int>()).c_str())));
-				sub->add_option<RegularOption>("spoof IP[1]", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["ip"][1] = atoi(g_ui_mgr->getInputText().c_str()); }); });
+				sub->add_option<RegularOption>("INPUT IP [1]", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["ip"][1] = atoi(g_ui_mgr->getInputText().c_str()); }); });
 				sub->add_option<RegularOption>(std::move(RegularOption("IP[2]").SetRightText(std::to_string(g_settings.options["ip"][2].get<int>()).c_str())));
-				sub->add_option<RegularOption>("spoof [2]", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["ip"][2] = atoi(g_ui_mgr->getInputText().c_str()); }); });
+				sub->add_option<RegularOption>("INPUT IP [2]", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["ip"][2] = atoi(g_ui_mgr->getInputText().c_str()); }); });
 				sub->add_option<RegularOption>(std::move(RegularOption("IP[3]").SetRightText(std::to_string(g_settings.options["ip"][3].get<int>()).c_str())));
-				sub->add_option<RegularOption>("spoof [3]", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["ip"][3] = atoi(g_ui_mgr->getInputText().c_str()); }); });
+				sub->add_option<RegularOption>("INPUT IP [3]", nullptr, [] {g_ui_mgr->inputBox([] {g_settings.options["ip"][3] = atoi(g_ui_mgr->getInputText().c_str()); }); });
 			});
 
 		//std::size_t PLAYER_LIST = g_ui_mgr->addSub("PLAYERLIST");
@@ -313,15 +323,15 @@ namespace hbase
 							std::string name{};
 							name += pc.player_name;
 							if (pc.is_host) {
-								name += " [is host]";
+								name += " [HOST]";
 							}
 							if (pc.is_me)
 							{
-								name += " [self]";
+								name += " [SELF]";
 							}
 							if (pc.is_script_host)
 							{
-								name += " [Script host]";
+								name += " [SCRIPT HOST]";
 							}
 							sub->add_option<SubOption>(name.c_str(), nullptr, one_player_option, [i] {g_players.player_id = i; });
 						}
@@ -336,11 +346,13 @@ namespace hbase
 			});
 		g_ui_mgr->add_submenu<PlayerSubmenu>(SELF, &g_players.player_id, one_player_option, [](PlayerSubmenu* sub)
 			{
-				sub->add_option<BoolOption<bool>>("spectate", nullptr, &g_settings.spectating);
-				sub->add_option<SubOption>("remove player?", nullptr, remove_one_player);
-				sub->add_option<SubOption>("teleport player", nullptr, teleport_player);
-				sub->add_option<SubOption>("friendly options?", nullptr, friendly_option);
-				sub->add_option<SubOption>("griefing?", nullptr, attack_options);
+				sub->add_option<BoolOption<bool>>("spectate player", nullptr, &g_settings.spectating);
+				sub->add_option<SubOption>("friendly options", nullptr, friendly_option);
+				//
+				sub->add_option<SubOption>("Troll Options", nullptr, attack_options);
+				sub->add_option<SubOption>("remove options", nullptr, remove_one_player);
+				//
+				sub->add_option<SubOption>("teleport options", nullptr, teleport_player);
 				sub->add_option<RegularOption>("copy outfit", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE() {
 						features::copy_outfit(g_players.player_id);
@@ -364,7 +376,7 @@ namespace hbase
 						g_pointers->m_trigger_script_event(1, data, 4, 1 << g_players.player_id);
 					}
 					QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("lord who fucking knows", nullptr, [] {
+				sub->add_option<RegularOption>("A script event", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						int64_t data[] = { -621279188, g_players.player_id, 1, 0, 1 };
@@ -416,46 +428,46 @@ namespace hbase
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Friendly", friendly_option, [](RegularSubmenu* sub)
 			{
-				sub->add_option<RegularOption>("give all weapons (mk1 only?)", nullptr, [] {
+				sub->add_option<RegularOption>("give all mk1 weapons", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						features::give_all_weapons();
 					}
 					QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("give mk2 weapons", nullptr, [] {
+				sub->add_option<RegularOption>("give all mk2 weapons", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE() {
 						features::give_all_mk2();
 					}QUEUE_JOB_END_CLAUSE });
-				sub->add_option<RegularOption>("stun gun", nullptr, [] {
+				sub->add_option<RegularOption>("give stun gun", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						features::give_stun_gun();
 					}
 					QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("Give digi scanner?", "wtf is a digi scanner frfr", [] {
+				sub->add_option<RegularOption>("Give digi scanner", "wtf is a digi scanner frfr", [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						features::give_digiscanner();
 					}
 					QUEUE_JOB_END_CLAUSE});
 			});
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "uhhh idk all players?", remove_one_player, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Remove Options", remove_one_player, [](RegularSubmenu* sub)
 			{
-				sub->add_option<RegularOption>("kick player", nullptr, [] {
+				sub->add_option<RegularOption>("Host Kick", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						NETWORK::NETWORK_SESSION_KICK_PLAYER(g_players.player_id);
 					}
 					QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("some fucking script event", nullptr, [] {
+				sub->add_option<RegularOption>("Script event crash", "probs", [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						int64_t data[] = { -1386010354, g_players.player_id, 4212424, 442214, 0, 0, 0, 0, 0, 0 };
 						g_pointers->m_trigger_script_event(1, data, 10, 1 << g_players.player_id);
 					}
 					QUEUE_JOB_END_CLAUSE});
-				sub->add_option<BoolOption<bool>>("Crash objects?", "maybe crash lobby with object crash?", &g_settings.m_spawn_crash_objects);
-				sub->add_option<RegularOption>("kick player?", nullptr, [] {
+				sub->add_option<BoolOption<bool>>("Spawn crash objects", "", &g_settings.m_spawn_crash_objects);
+				sub->add_option<RegularOption>("desync kick player", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						CNetGamePlayer* player = g_pointers->m_get_net_game_player(g_players.player_id);
@@ -484,14 +496,14 @@ namespace hbase
 					}
 					QUEUE_JOB_END_CLAUSE
 					}).SetRightText(g_settings.m_de_remove_crash ? "" : "")));
-				sub->add_option<RegularOption>(std::move(RegularOption("veh crash ? (V2)", nullptr, [] {
+				sub->add_option<RegularOption>(std::move(RegularOption("veh crash (V2)", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						features::de_remove_veh_crash1();
 					}
 					QUEUE_JOB_END_CLAUSE
-					}).SetRightText(g_settings.m_de_remove_crash ? "wtf is this shit fr" : "")));
-				sub->add_option<RegularOption>("spawn crash vehicle???", nullptr, [] {
+					}).SetRightText(g_settings.m_de_remove_crash ? "" : "")));
+				sub->add_option<RegularOption>("spawn crash vehicle", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						Ped ped = PLAYER::GET_PLAYER_PED_SCRIPT_INDEX(g_players.player_id);
@@ -507,7 +519,7 @@ namespace hbase
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "teleport player", teleport_player, [](RegularSubmenu* sub)
 			{
-				sub->add_option<RegularOption>("tp player to self", nullptr, [] {
+				sub->add_option<RegularOption>("tp to player", nullptr, [] {
 					QUEUE_JOB_BEGIN_CLAUSE()
 					{
 						Ped myPed = PLAYER::PLAYER_PED_ID();
@@ -548,8 +560,8 @@ namespace hbase
 					QUEUE_JOB_END_CLAUSE
 					});
 				sub->add_option<BreakOption>("Ammo modifiers");
-				sub->add_option<BoolOption<bool>>("unlimited_ammo", nullptr, g_settings.options["unlimited_ammo"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("explosive_ammo", nullptr, g_settings.options["explosive_ammo"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Unlimited Ammo", nullptr, g_settings.options["unlimited_ammo"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Explosive_Ammo", nullptr, g_settings.options["explosive_ammo"].get<bool*>());
 				sub->add_option<BoolOption<bool>>("Rapid fire", "", g_settings.options["rapid_fire"].get<bool*>());
 			});
 
@@ -557,19 +569,19 @@ namespace hbase
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "VEHICLE", vehicle_option, [](RegularSubmenu* sub)
 			{
 				sub->add_option<SubOption>("Spawn Vehicles", nullptr, create_vehicle);
-				sub->add_option<BoolOption<bool>>("vehicle_invincible", nullptr, g_settings.options["vehicle_invincible"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("safety_belt", nullptr, g_settings.options["safety_belt"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("infinite_nitrogen", "æﬂ”–≈Á…‰π¶ƒ‹µƒ‘ÿæﬂø…“ª÷±≈Á…‰ ø’∏ÒÕ£≈Á", g_settings.options["infinite_nitrogen"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("9_key_speed_up (what the fuck)", "I stg if this binds boost too the 9 key thats dumb -baz", g_settings.options["9_key_speed_up"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("rainbow_vehicle", nullptr, g_settings.options["rainbow_vehicle"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("vehicle God", nullptr, g_settings.options["vehicle_invincible"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Wear seatbelt", nullptr, g_settings.options["safety_belt"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("infinite boost", "", g_settings.options["infinite_nitrogen"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Horn Boost", nullptr, g_settings.options["9_key_speed_up"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("rainbow vehicle", nullptr, g_settings.options["rainbow_vehicle"].get<bool*>());
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "veh spawner", create_vehicle, [](RegularSubmenu* sub)
 			{
-				sub->add_option<BoolOption<bool>>("delete_last_vehicle", "", g_settings.options["delete_last_vehicle"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("spwan_vehicle_max", nullptr, g_settings.options["spwan_vehicle_max"].get<bool*>());
-				sub->add_option<BoolOption<bool>>("spwan_vehicle_in", nullptr, g_settings.options["spwan_vehicle_in"].get<bool*>());
-				sub->add_option<SubOption>("xml vehicle (disabled)", nullptr, create_xml_vehicle);
-				sub->add_option<SubOption>("ini vehicle (disabled)", nullptr, create_ini_vehicle);
+				sub->add_option<BoolOption<bool>>("delete last vehicle", "", g_settings.options["delete_last_vehicle"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("spwan vehicle max", nullptr, g_settings.options["spwan_vehicle_max"].get<bool*>());
+				sub->add_option<BoolOption<bool>>("Spawn in vehicle", nullptr, g_settings.options["spwan_vehicle_in"].get<bool*>());
+				//sub->add_option<SubOption>("xml vehicle (disabled)", nullptr, create_xml_vehicle);
+			//	sub->add_option<SubOption>("ini vehicle (disabled)", nullptr, create_ini_vehicle);
 				sub->add_option<BreakOption>("Break option");
 				for (VehicleClass& vc : g_vehicles.classes)
 				{
@@ -629,30 +641,31 @@ namespace hbase
 					}
 					QUEUE_JOB_END_CLAUSE
 					});
-				sub->add_option<BreakOption>("Yeah i cant translate these");
-				sub->add_option<RegularOption>("1", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 336.158, 4373.934, 64.46 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("2", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 3156.38355,-355.16663, -20.09742 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("3", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 3067.58, 2212.25, 3.00 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("4", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -430.905, 1135.2722, 325.904 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("5", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 719.30,1204.76,325.88 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("6", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -256.43,6569.93, 2.66 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("7", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -604.92, 2113.95, 127.11 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("8", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -74.94243,-818.63446, 326.174347 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("9", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -2012.8470f, 2956.5270f, 32.8101f }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("10", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -2356.0940, 3248.645, 101.4505 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("11", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -1338.16, -1278.11, 4.87 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("maze bank", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -74.94243,-818.63446, 326.174347 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Fort Zancudo", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -2012.8470f, 2956.5270f, 32.8101f }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Zancudo tower", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -2356.0940, 3248.645, 101.4505 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Mask shop", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -1338.16, -1278.11, 4.87 }); }QUEUE_JOB_END_CLAUSE});
 				sub->add_option<RegularOption>("LSC", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -373.01, -124.91, 38.31 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("13", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 247.3652, -45.8777, 69.9411 }); }QUEUE_JOB_END_CLAUSE});
-				sub->add_option<RegularOption>("14", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -1102.2910f, -2894.5160f, 13.9467f }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Ammunation", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 247.3652, -45.8777, 69.9411 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("LOS santos airport", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -1102.2910f, -2894.5160f, 13.9467f }); }QUEUE_JOB_END_CLAUSE});
+			//	sub->add_option<BreakOption>("Yeah i cant translate these");
+				sub->add_option<RegularOption>("Del pero sea", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 336.158, 4373.934, 64.46 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Underwater sign", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 3156.38355,-355.16663, -20.09742 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Cave", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 3067.58, 2212.25, 3.00 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Observatory", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -430.905, 1135.2722, 325.904 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Vinewood sign", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ 719.30,1204.76,325.88 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("Top of map beach", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -256.43,6569.93, 2.66 }); }QUEUE_JOB_END_CLAUSE});
+				sub->add_option<RegularOption>("middle of map road", nullptr, [] {	QUEUE_JOB_BEGIN_CLAUSE() { features::tp_to_vector3({ -604.92, 2113.95, 127.11 }); }QUEUE_JOB_END_CLAUSE});
+			
 			});
 
 //		std::size_t TASK = g_ui_mgr->addSub("TASK");
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "i think this is heist editor", task_option, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Heist Editor", task_option, [](RegularSubmenu* sub)
 			{
 				sub->add_option<SubOption>("perico", nullptr, pericoIsland);
 				sub->add_option<SubOption>("Casino", nullptr, casinorobbery);
 				sub->add_option<SubOption>("Doomsday", nullptr, doomsdayheist);
-				sub->add_option<SubOption>("apt (og heists?)", nullptr, apartment);
+				sub->add_option<SubOption>("apartment (og heists)", nullptr, apartment);
 				sub->add_option<SubOption>("Contract task", nullptr, contracttask);
 			});
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "Perico island", pericoIsland, [](RegularSubmenu* sub)
@@ -1079,6 +1092,11 @@ namespace hbase
 	//	std::size_t SELF = g_ui_mgr->addSub("SETTINGS");
 		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "settings", menu_seetings, [](RegularSubmenu* sub)
 			{
+
+
+
+
+				sub->add_option<BreakOption>("");
 				sub->add_option<RegularOption>("Unload", nullptr, [] {
 					g_running = false;
 					});
