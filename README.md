@@ -3,7 +3,7 @@
 Windbreaker, an Open source gta menu based on bigbasev2! 
 
 
-make pull requests, additons , fixed, improvements whatever u want. 
+make pull requests, additons , fixes, improvements whatever u want. 
 
 No set code style the only rule is dont be a fucking dumbass skid
 
