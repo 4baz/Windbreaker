@@ -1,0 +1,174 @@
+{
+    "Description": {
+        "description_rgba": [
+            0,
+            0,
+            0,
+            200
+        ],
+        "description_text_rgba": [
+            255,
+            255,
+            255,
+            255
+        ],
+        "directory": "default\\Description",
+        "is_texture_mode": true,
+        "picture_after": ".png",
+        "picture_before": "description"
+    },
+    "Footer": {
+        "directory": "default\\Footer",
+        "footer_arrows_rgba": [
+            255,
+            255,
+            255,
+            255
+        ],
+        "footer_rgba": [
+            0,
+            0,
+            0,
+            255
+        ],
+        "is_texture_mode": true,
+        "picture_after": ".png",
+        "picture_before": "footer"
+    },
+    "Seperator": {
+        "seperator_rgba_left": [
+            100,
+            239,
+            255,
+            255
+        ],
+        "seperator_rgba_right": [
+            75,
+            100,
+            255,
+            255
+        ]
+    },
+    "SubmenuBar": {
+        "directory": "default\\Submenu Bar",
+        "is_texture_mode": true,
+        "picture_after": ".png",
+        "picture_before": "submenubar",
+        "submenu_bar_rgba": [
+            0,
+            0,
+            0,
+            255
+        ],
+        "submenu_bar_text_rgba": [
+            255,
+            255,
+            255,
+            255
+        ]
+    },
+    "acceleration_speed": 15,
+    "delay": 5,
+    "font": "HarmonyOS_Sans_SC_Black.ttf",
+    "header": {
+        "count": 1,
+        "directory": "default\\header",
+        "header_after": ".png",
+        "header_before": "header",
+        "header_color_left_alpha": 255,
+        "header_color_left_blue": 255,
+        "header_color_left_green": 239,
+        "header_color_left_red": 100,
+        "header_color_right_alpha": 255,
+        "header_color_right_blue": 255,
+        "header_color_right_green": 100,
+        "header_color_right_red": 75,
+        "header_height": 120,
+        "is_texture_mode": true
+    },
+    "option": {
+        "count": 1,
+        "directory": "default\\Background",
+        "is_texture_mode": true,
+        "option_after": ".png",
+        "option_before": "background",
+        "option_rbga": [
+            0,
+            0,
+            0,
+            180
+        ],
+        "slider": {
+            "count": 1,
+            "directory": "default\\Scroller",
+            "is_texture_mode": true,
+            "slider_after": ".png",
+            "slider_before": "scroller",
+            "slider_rbga": [
+                0,
+                50,
+                255,
+                251
+            ]
+        },
+        "text": {
+            "text_rgba": [
+                255,
+                255,
+                255,
+                255
+            ],
+            "text_rgba_active": [
+                0,
+                0,
+                0,
+                255
+            ]
+        }
+    },
+    "option_height": 30,
+    "sidebar": {
+        "count": 1,
+        "directory": "default\\Sidebar",
+        "is_texture_mode": true,
+        "sidebar_after": ".png",
+        "sidebar_before": "sidebar",
+        "sidebar_rbga": [
+            0,
+            50,
+            255,
+            251
+        ],
+        "slider": {
+            "count": 1,
+            "directory": "default\\Scroller",
+            "is_texture_mode": true,
+            "slider_after": ".png",
+            "slider_before": "scroller",
+            "slider_rbga": [
+                0,
+                50,
+                255,
+                251
+            ]
+        },
+        "text": {
+            "text_rgba": [
+                255,
+                255,
+                255,
+                255
+            ],
+            "text_rgba_active": [
+                0,
+                0,
+                0,
+                255
+            ]
+        }
+    },
+    "speed": 3,
+    "width": 400,
+    "x": 10,
+    "y": 40
+}

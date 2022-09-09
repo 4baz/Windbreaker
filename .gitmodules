@@ -1,0 +1,18 @@
+[submodule "vendor/g3log"]
+	path = vendor/g3log
+	url = https://github.com/KjellKod/g3log.git
+[submodule "vendor/minhook"]
+	path = vendor/minhook
+	url = https://github.com/TsudaKageyu/minhook.git
+[submodule "vendor/imgui"]
+	path = vendor/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "vendor/fmt"]
+	path = vendor/fmt
+	url = https://github.com/fmtlib/fmt.git
+[submodule "vendor/json"]
+	path = vendor/json
+	url = https://github.com/nlohmann/json.git
+[submodule "vendor/pugixml"]
+	path = vendor/pugixml
+	url = https://github.com/zeux/pugixml.git
