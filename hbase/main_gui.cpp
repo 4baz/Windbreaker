@@ -78,7 +78,6 @@ namespace hbase
 
 				sub->add_option<SubOption>("Settings", nullptr, menu_seetings);
 
-				sub->add_option<BreakOption>("\"EtheShit\" Clone ");
 
 
 
@@ -292,31 +291,48 @@ namespace hbase
 			});
 
 		//std::size_t PLAYER_LIST = g_ui_mgr->addSub("PLAYERLIST");
-		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "PLAYERLIST", onlie_option, [](RegularSubmenu* sub)
+		g_ui_mgr->add_submenu<RegularSubmenu>(SELF, "PLAYERLIST", player_list, [](RegularSubmenu* sub)
 			{
-				for (size_t i = 0; i < 32; i++)
-				{
-					player_class& pc = g_players.m_players[i];
-					if (pc.is_onlie)
+				//if offline set the player to 0
+				if (!g_pointers->m_is_session_started) {
+					std::string selfname{};
+					g_players.player_id = 0;
+					
+					player_class& pc = g_players.m_players[0];
+					selfname += pc.player_name;
+
+						sub->add_option<SubOption>(selfname.c_str(), nullptr, one_player_option, [] {g_players.player_id = 0; });
+
+				}
+				else {
+					for (size_t i = 0; i < 32; i++)
 					{
-						std::string name{};
-						name += pc.player_name;
-						if (pc.is_host) {
-							name += " [is host]";
-						}
-						if (pc.is_me)
+						player_class& pc = g_players.m_players[i];
+						if (pc.is_onlie)
 						{
-							name += " [self]";
+							std::string name{};
+							name += pc.player_name;
+							if (pc.is_host) {
+								name += " [is host]";
+							}
+							if (pc.is_me)
+							{
+								name += " [self]";
+							}
+							if (pc.is_script_host)
+							{
+								name += " [Script host]";
+							}
+							sub->add_option<SubOption>(name.c_str(), nullptr, one_player_option, [i] {g_players.player_id = i; });
 						}
-						if (pc.is_script_host)
-						{
-							name += " [Script host]";
-						}
-						sub->add_option<SubOption>(name.c_str(), nullptr, one_player_option, [i] {g_players.player_id = i; });
 					}
+
+					g_settings.spectating = false;
 				}
 
-				g_settings.spectating = false;
+
+
+				
 			});
 		g_ui_mgr->add_submenu<PlayerSubmenu>(SELF, &g_players.player_id, one_player_option, [](PlayerSubmenu* sub)
 			{
@@ -1071,6 +1087,10 @@ namespace hbase
 				sub->add_option<RegularOption>("Quit", nullptr, [] {
 					exit(0);
 					});
+				sub->add_option<BreakOption>("CREDITS:");
+				//add yourself if u give zero fucks
+				sub->add_option<RegularOption>("4baz", nullptr, [] {});
+
 
 			});
 	}

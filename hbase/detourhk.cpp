@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "detour_hook.h"
+#include "detourhk.h"
 #include "logger.h"
 #include "memory/handle.h"
 #include<MinHook.h>

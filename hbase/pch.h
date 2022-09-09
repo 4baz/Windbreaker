@@ -26,8 +26,8 @@
 #include"VMProtectSDK.h"
 #pragma execution_character_set("utf-8")
 
-#define MENU_PATH "C:\\hbase"
-#define MENU_NAME "hbase"
+#define MENU_PATH "C:\\Wbreaker"
+#define MENU_NAME "Wbreaker"
 
 namespace hbase
 {

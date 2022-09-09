@@ -145,7 +145,7 @@ namespace hbase
 			return true;
 		}
 
-		std::string settings_file = "C:\\hbase\\settings.json";
+		std::string settings_file = "C:\\Wbreaker\\settings.json";
 	};
 
 	inline settings g_settings;

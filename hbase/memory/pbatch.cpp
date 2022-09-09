@@ -1,16 +1,16 @@
 #include "../pch.h"
 #include "../logger.h"
-#include "pattern_batch.h"
+#include "pbatch.h"
 #include "range.h"
 
 namespace memory
 {
-	void pattern_batch::add(std::string name, pattern pattern, std::function<void(handle)> callback)
+	void pbatch::add(std::string name, pattern pattern, std::function<void(handle)> callback)
 	{
 		m_entries.emplace_back(std::move(name), std::move(pattern), std::move(callback));
 	}
 
-	void pattern_batch::run(range region)
+	void pbatch::run(range region)
 	{
 		bool all_found = true;
 		for (auto& entry : m_entries)

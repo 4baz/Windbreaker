@@ -8,7 +8,7 @@ namespace hbase
 {
 	pointers::pointers()
 	{
-		memory::pattern_batch main_batch;
+		memory::pbatch main_batch;
 		main_batch.add("SC", "48 8B 0D ? ? ? ? 48 8B 01 44 8D 43 01 33 D2 FF 50 40 8B C8", [this](memory::handle ptr)
 			{
 				m_swapchain = ptr.add(3).rip().as<IDXGISwapChain**>();

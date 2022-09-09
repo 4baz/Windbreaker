@@ -644,7 +644,7 @@ MH_STATUS WINAPI MH_CreateHook(LPVOID pTarget, LPVOID pDetour, LPVOID *ppOrigina
         }
         else
         {
-            status = MH_ERROR_NOT_EXECUTABLE;
+            status = MH_ERROR_NOT_EXEC;
         }
     }
     else
@@ -878,7 +878,7 @@ MH_STATUS WINAPI MH_CreateHookApiEx(
 
     pTarget = (LPVOID)GetProcAddress(hModule, pszProcName);
     if (pTarget == NULL)
-        return MH_ERROR_FUNCTION_NOT_FOUND;
+        return MH_ERROR_FUNC_NT_FND;
 
     if(ppTarget != NULL)
         *ppTarget = pTarget;
@@ -909,12 +909,12 @@ const char * WINAPI MH_StatusToString(MH_STATUS status)
         MH_ST2STR(MH_ERROR_NOT_CREATED)
         MH_ST2STR(MH_ERROR_ENABLED)
         MH_ST2STR(MH_ERROR_DISABLED)
-        MH_ST2STR(MH_ERROR_NOT_EXECUTABLE)
+        MH_ST2STR(MH_ERROR_NOT_EXEC)
         MH_ST2STR(MH_ERROR_UNSUPPORTED_FUNCTION)
         MH_ST2STR(MH_ERROR_MEMORY_ALLOC)
         MH_ST2STR(MH_ERROR_MEMORY_PROTECT)
         MH_ST2STR(MH_ERROR_MODULE_NOT_FOUND)
-        MH_ST2STR(MH_ERROR_FUNCTION_NOT_FOUND)
+        MH_ST2STR(MH_ERROR_FUNC_NT_FND)
     }
 
 #undef MH_ST2STR

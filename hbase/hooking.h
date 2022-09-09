@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "detour_hook.h"
+#include "detourhk.h"
 #include "vmt_hook.h"
 #include "gta/script_thread.h"
 #include"gta/net_game_event.h"
